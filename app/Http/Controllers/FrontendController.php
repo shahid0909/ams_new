@@ -6,6 +6,7 @@ use App\Models\country;
 use App\Models\LAppoinmentType;
 use App\Models\LCountry;
 use App\Models\lmission;
+use App\Models\lSubConsular;
 use App\Models\zone_mapping;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,8 @@ class FrontendController extends Controller
     {
         $country = country::all();
         $apptype =LAppoinmentType::all();
-        return view('frontend.mission.index',compact('country','apptype'));
+        $consulateType = lSubConsular::all();
+        return view('frontend.mission.index',compact('country','apptype','consulateType'));
     }
 
     public function getmissionAjax(Request $request){

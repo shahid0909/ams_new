@@ -71,6 +71,16 @@
 
                                         </select>
                                     </div>
+                                    <div class="col-md-6 constype" style="display: none">
+                                        <label>CONSULATE TYPE<span class="text-danger">*</span></label>
+                                        <select type="text" name="consulate_type"  class="form-control" id="consulate_type">
+                                            <option value="">---Choose---</option>
+                                            @foreach($consulateType as $list)
+                                                <option value="{{$list->id}}">{{$list->sub_consular}} </option>
+                                            @endforeach
+
+                                        </select>
+                                    </div>
                                     <div class="col-md-6">
                                         <label class="require">DATE<span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" required
@@ -131,7 +141,6 @@
                                     </div>
                                 </div>
 
-
                             </form>
                         </div>
                     </div>
@@ -149,6 +158,15 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
+        $('#typeapp').on('change', function () {
+            var typeapp = this.value;
+            if(typeapp ==  3){
+
+                $('.constype').css('display','block');
+            } else{
+                $('.constype').css('display','none');
+            }
+        });
         $('#country_id').on('change', function () {
             var country_id = this.value;
 
