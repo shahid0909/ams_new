@@ -30,7 +30,7 @@ Route::get('/', function () {
 //Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::group(['name' => 'frontend', 'as' => 'frontend.'], function () {
     Route::get('mission', [FrontendController::class, 'index'])->name('index');
-    Route::post('get-country-ajax', [FrontendController::class, 'getCountryAjax'])->name('get-country');
+    Route::post('get-mission', [FrontendController::class, 'getmissionAjax'])->name('get-mission');
 
 
 });

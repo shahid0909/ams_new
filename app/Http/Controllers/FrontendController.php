@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\country_;
+use App\Models\country;
 use App\Models\LAppoinmentType;
 use App\Models\LCountry;
 use App\Models\lmission;
@@ -19,15 +19,14 @@ class FrontendController extends Controller
      */
     public function index(Request $request)
     {
-        $mission = lmission::all();
-        $country = LCountry::all();
+        $country = country::all();
         $apptype =LAppoinmentType::all();
-        return view('frontend.mission.index',compact('mission','country','apptype'));
+        return view('frontend.mission.index',compact('country','apptype'));
     }
 
-    public function getCountryAjax(Request $request){
+    public function getmissionAjax(Request $request){
 
-        $data = country::where('missionId',$request->mission_id)->get();
+        $data = lmission::where('country_id',$request->country_id)->get();
 
         return response()->json($data);
     }
