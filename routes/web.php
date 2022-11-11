@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\UserProfileController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\Setup\CountryController;
 use App\Http\Controllers\Setup\DeskController;
 use App\Http\Controllers\Setup\EmployeeController;
@@ -27,6 +28,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('frontend.home');
 });
+
+Route::get('send-basic-email/{id}',[MailController::class, 'send_email'])->name('send_mail');
+
 //Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::group(['name' => 'frontend', 'as' => 'frontend.'], function () {
     Route::get('mission', [FrontendController::class, 'index'])->name('index');

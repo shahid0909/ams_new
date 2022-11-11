@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use function route;
 
 class RegisterController extends Controller
 {
@@ -140,7 +141,7 @@ class RegisterController extends Controller
         return datatables()->of($data)
             ->editColumn('active_yn', function ($query) {
                 if ($query->active_yn == 'Y') {
-                    return '<a href="' . route('user.inactive', $query->id) . '" class=""><button class="btn btn-success">Active</button></i></a>';
+                    return '<a data-bs-toggle="tooltip" data-placement="right" title="" data-bs-original-title="Basic tooltip" href="' . route('send_mail', $query->id) . '" ><i class="ti-email"></i></a>&nbsp;&nbsp; || &nbsp;&nbsp;<a style="text-decoration: none" href="' . route('user.inactive', $query->id) . '" class=""><i class="fas fa-check"></i> Active</i></a>';
                 } else {
                     return '<button class="btn btn-inverse-danger" >Inactive</button>';
                 }
