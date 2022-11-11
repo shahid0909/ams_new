@@ -4,10 +4,12 @@
 namespace App\Http\Controllers\Setup;
 
 use App\Http\Controllers\Controller;
+use App\Models\country;
 use App\Models\employee;
 use App\Models\LCountry;
 use App\Models\lDesignation;
 use App\Models\lmission;
+use App\Models\User;
 use App\Models\zone_mapping;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,11 +29,13 @@ class ScheduleController extends Controller
 
     public function index()
     {
-        $mission = lmission::all();
+//        $mission = lmission::all();
         $data = '';
-//        $zone = zone_mapping::where('id',Auth::user()->zoneId)->first();
+        $mission=User::leftjoin('lmission','lmission.id','users.mission_id')->where('lmission.id',Auth::user()->mission_id)
+            ->select('users.*', 'lmission.mission')->first();
+        $country = country::all();
 
-        return view('backend.setup.schedule',compact('data','mission'));
+        return view('backend.setup.schedule',compact('data','mission','country'));
     }
 
 public function store(Request $request){

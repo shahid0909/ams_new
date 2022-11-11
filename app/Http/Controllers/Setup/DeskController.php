@@ -31,8 +31,9 @@ class DeskController extends Controller
     public function index()
     {
         $data='';
-        $user= User::leftjoin('zone_mapping','zone_mapping.id','users.zoneId')->where('zone_mapping.id',Auth::user()->zoneId)
-            ->select('users.*', 'zone_mapping.zone')->get();
+        $user=User::leftjoin('lmission','lmission.id','users.mission_id')->where('lmission.id',Auth::user()->mission_id)
+            ->select('users.*', 'lmission.mission')->get();
+
         $appoimentType = LAppoinmentType::all();
         $mission = lmission::all();
         return view('backend.setup.deskAssign',compact('mission','data','appoimentType','user'));

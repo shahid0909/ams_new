@@ -13,8 +13,8 @@
                         <div class="col-md-10 col-md-offset-1">
                             <div class="probootstrap-slider-text text-center">
                                 <p><img src="{{asset('frontend/img/curve_white.svg')}}" class="seperator probootstrap-animate" alt="Free HTML5 Bootstrap Template"></p>
-                                <h1 class="probootstrap-heading probootstrap-animate">Welcome to Forign Ministry</h1>
-                                <div class="probootstrap-animate probootstrap-sub-wrap">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</div>
+                                <h1 class="probootstrap-heading probootstrap-animate">Welcome to Foreign Affairs</h1>
+{{--                                <div class="probootstrap-animate probootstrap-sub-wrap">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</div>--}}
                             </div>
                         </div>
                     </div>

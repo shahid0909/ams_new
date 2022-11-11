@@ -87,12 +87,7 @@
                                                name="app_date" id="app_date">
 
                                     </div>
-                                    <div class="col-md-6">
-                                        <label class="require">TIME ZONE<span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" required
-                                               name="time_zone" id="time_zone">
 
-                                    </div>
 
                                     <div class="col-md-6">
                                         <label class="require"> FROM TIME<span class="text-danger">*</span></label>

@@ -38,7 +38,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-4">
-                    <h4 class="card-title border-bottom">Schedule Entry  @if(Auth::user()->role != 1) for @endif</h4>
+                    <h4 class="card-title border-bottom">Schedule Entry  @if(Auth::user()->role != 1) for {{$mission->mission}} @endif</h4>
 
                     <form method="post"
                           @if(isset($data->id)?$data->id :'')
@@ -52,25 +52,29 @@
 
                             @if(Auth::user()->role == 1)
                                 <div class="col-md-12">
-                                    <label>Mission<span class="text-danger">*</span></label>
-                                    <select name="mission_id" id="mission_id" required class="form-control">
-                                        <option value="">---Select Mission---</option>
-                                        @foreach($mission as $list)
-                                            <option
-                                                value="{{$list->id}}" >{{$list->mission}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-md-12">
                                     <label>Country<span class="text-danger">*</span></label>
                                     <select name="country_id" id="country_id" required class="form-control">
                                         <option value="">---Select Country---</option>
+                                        @foreach($country as $list)
+                                            <option value="{{$list->id}}">{{$list->country}}</option>
+                                        @endforeach
 
                                     </select>
                                 </div>
+                                <div class="col-md-12">
+                                    <label>Mission<span class="text-danger">*</span></label>
+                                    <select name="mission_id" id="mission_id" required class="form-control">
+                                        <option value="">---Select Mission---</option>
+{{--                                        @foreach($mission as $list)--}}
+{{--                                            <option--}}
+{{--                                                value="{{$list->id}}" >{{$list->mission}}</option>--}}
+{{--                                        @endforeach--}}
+                                    </select>
+                                </div>
+
 
                             @else
-{{--                                <input type="hidden" name="missionId" value="{{$zone->id}}">--}}
+                                <input type="hidden" name="missionId" value="{{$mission->mission_id}}">
                                 @endif
                             <div class="col-md-12">
                                 <label class="">DATE<span class="text-danger">*</span></label>
@@ -199,29 +203,29 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
 
-        {{--$('#country_id').on('change', function () {--}}
-        {{--    var country_id = this.value;--}}
+        $('#country_id').on('change', function () {
+            var country_id = this.value;
 
-        {{--    $("#zone_id").html('');--}}
-        {{--    $.ajax({--}}
-        {{--        url: "{{route('frontend.get-zone')}}",--}}
-        {{--        type: "POST",--}}
-        {{--        data: {--}}
-        {{--            country_id: country_id,--}}
-        {{--            _token: '{{csrf_token()}}'--}}
-        {{--        },--}}
-        {{--        dataType: 'json',--}}
-        {{--        success: function (result) {--}}
-        {{--            $("#zone_id").empty();--}}
-        {{--            $('#zone_id').html('<option value="">-- Select Zone --</option>');--}}
-        {{--            $.each(result, function (key, value) {--}}
-        {{--                $("#zone_id").append('<option value="' + value--}}
-        {{--                    .id + '">' + value.zone + '</option>');--}}
-        {{--            });--}}
+            $("#mission_id").html('');
+            $.ajax({
+                url: "{{route('user.get-mission-ajax')}}",
+                type: "POST",
+                data: {
+                    country_id: country_id,
+                    _token: '{{csrf_token()}}'
+                },
+                dataType: 'json',
+                success: function (result) {
+                    $("#mission_id").empty();
+                    $('#mission_id').html('<option value="">-- Select Mission --</option>');
+                    $.each(result, function (key, value) {
+                        $("#mission_id").append('<option value="' + value
+                            .id + '">' + value.mission + '</option>');
+                    });
 
-        {{--        }--}}
-        {{--    });--}}
-        {{--});--}}
+                }
+            });
+        });
 
         // $("#app_date").datepicker();
         $(function () {

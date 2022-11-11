@@ -38,8 +38,8 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-4">
-                    <h4 class="card-title border-bottom">Desk Assign
-                        @if(Auth::user()->role != 1) for {{$user[0]->zone}} @endif
+
+                    <h4 class="card-title border-bottom">Desk Assign for {{$user[0]->mission}}
                     </h4>
 
                     <form method="post"
@@ -52,37 +52,37 @@
                         @csrf
                         <div class="row border-right">
 
-                            @if(Auth::user()->role == 1)
-                                <div class="col-md-12">
-                                    <label>Mission<span class="text-danger">*</span></label>
-                                    <select name="mission_id" id="mission_id" required class="form-control">
-                                        <option value="">---Select Mission---</option>
-                                        @foreach($mission as $list)
-                                            <option
-                                                value="{{$list->id}}" >{{$list->mission}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-md-12">
-                                    <label>Country<span class="text-danger">*</span></label>
-                                    <select name="country_id" id="country_id" required class="form-control">
-                                        <option value="">---Select Country---</option>
+{{--                            @if(Auth::user()->role == 1)--}}
+{{--                                <div class="col-md-12">--}}
+{{--                                    <label>Mission<span class="text-danger">*</span></label>--}}
+{{--                                    <select name="mission_id" id="mission_id" required class="form-control">--}}
+{{--                                        <option value="">---Select Mission---</option>--}}
+{{--                                        @foreach($mission as $list)--}}
+{{--                                            <option--}}
+{{--                                                value="{{$list->id}}" >{{$list->mission}}</option>--}}
+{{--                                        @endforeach--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-md-12">--}}
+{{--                                    <label>Country<span class="text-danger">*</span></label>--}}
+{{--                                    <select name="country_id" id="country_id" required class="form-control">--}}
+{{--                                        <option value="">---Select Country---</option>--}}
 
-                                    </select>
-                                </div>
-                                <div class="col-md-12">
-                                    <label>Zone<span class="text-danger">*</span></label>
-                                    <select name="zone_id" id="zone_id" required class="form-control">
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-md-12">--}}
+{{--                                    <label>Zone<span class="text-danger">*</span></label>--}}
+{{--                                    <select name="zone_id" id="zone_id" required class="form-control">--}}
 
-                                    </select>
-                                </div>
-                                <div class="col-md-12">
-                                    <label>Desk Officer<span class="text-danger">*</span></label>
-                                    <select name="dOfficer" id="dOfficer" required class="form-control">
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-md-12">--}}
+{{--                                    <label>Desk Officer<span class="text-danger">*</span></label>--}}
+{{--                                    <select name="dOfficer" id="dOfficer" required class="form-control">--}}
 
-                                    </select>
-                                </div>
-                            @else
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                            @else--}}
                                 <div class="col-md-12">
                                     <label class="">Desk Officer<span class="text-danger">*</span></label>
                                     <select type="text" class="form-control" required
@@ -93,8 +93,8 @@
                                         @endforeach
                                     </select>
                                 </div>
-{{--                                <input type="hidden" name="zoneId" value="{{$zone->id}}">--}}
-                                @endif
+                                <input type="hidden" name="mission_id" value="{{$user[0]->mission_id}}">
+{{--                                @endif--}}
                             <div class="col-md-12">
                                 <label class="">Appoinment Type<span class="text-danger">*</span></label>
                                 <select type="text" class="form-control" required
@@ -109,8 +109,6 @@
 
 
 
-
-
                             <div class="col-md-12">
                                 <label>Status</label>
                                 <ul class="list-unstyled mb-0">
@@ -122,14 +120,14 @@
                                                        class="custom-control-input"
                                                        name="active_yn"
                                                        id="active_y" checked
-                                                       value="Y" @if(isset($data->status))
-                                                    @if($data->status == 'Y')
-                                                        {{"checked"}}
+                                                       value="Y" >
+{{--                                                @if(isset($data->status))--}}
+{{--                                                    @if($data->status == 'Y')--}}
+{{--                                                        {{"checked"}}--}}
 
-                                                        @endif
-                                                    @endif >
-                                                {{--                                                @if(($data->status=='Y') or  old('active_yn')=='Y') {{"checked"}} @endif>--}}
-                                                <label
+{{--                                                        @endif--}}
+{{--                                                    @endif >--}}
+                                                                                                                                              <label
                                                     class="custom-control-label"
                                                     for="active_y">ENABLE</label>
                                             </div>
@@ -143,13 +141,13 @@
                                                        class="custom-control-input"
                                                        name="active_yn"
                                                        id="active_n"
-                                                       value="N"
-                                                @if(isset($data->status))
-                                                    @if($data->status == 'N'){{"checked"}} @endif
-                                                    @endif
-                                                >
+                                                       value="N">
+{{--                                                @if(isset($data->status))--}}
+{{--                                                    @if($data->status == 'N'){{"checked"}} @endif--}}
+{{--                                                    @endif--}}
+{{--                                                >--}}
 
-                                                {{--                                                @if($data->status=='N' or old('active_yn')=='N') {{"checked"}} @endif>--}}
+
                                                 <label
                                                     class="custom-control-label"
                                                     for="active_n">DISABLE</label>
@@ -212,75 +210,29 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
-        $('#mission_id').on('change', function () {
-            var mission_id = this.value;
+        {{--$('#mission_id').on('change', function () {--}}
+        {{--    var mission_id = this.value;--}}
 
-            $("#country_id").html('');
-            $.ajax({
-                url: "{{route('zone.get-country')}}",
-                type: "POST",
-                data: {
-                    mission_id: mission_id,
-                    _token: '{{csrf_token()}}'
-                },
-                dataType: 'json',
-                success: function (result) {
-                    $("#country_id").empty();
-                    $('#country_id').html('<option value="">-- Select Country --</option>');
-                    $.each(result, function (key, value) {
-                        $("#country_id").append('<option value="' + value
-                            .id + '">' + value.country + '</option>');
-                    });
+        {{--    $("#country_id").html('');--}}
+        {{--    $.ajax({--}}
+        {{--        url: "{{route('zone.get-country')}}",--}}
+        {{--        type: "POST",--}}
+        {{--        data: {--}}
+        {{--            mission_id: mission_id,--}}
+        {{--            _token: '{{csrf_token()}}'--}}
+        {{--        },--}}
+        {{--        dataType: 'json',--}}
+        {{--        success: function (result) {--}}
+        {{--            $("#country_id").empty();--}}
+        {{--            $('#country_id').html('<option value="">-- Select Country --</option>');--}}
+        {{--            $.each(result, function (key, value) {--}}
+        {{--                $("#country_id").append('<option value="' + value--}}
+        {{--                    .id + '">' + value.country + '</option>');--}}
+        {{--            });--}}
 
-                }
-            });
-        });
-        $('#country_id').on('change', function () {
-            var country_id = this.value;
-
-            $("#zone_id").html('');
-            $.ajax({
-                url: "{{route('zone.get-zone')}}",
-                type: "POST",
-                data: {
-                    country_id: country_id,
-                    _token: '{{csrf_token()}}'
-                },
-                dataType: 'json',
-                success: function (result) {
-                    $("#zone_id").empty();
-                    $('#zone_id').html('<option value="">-- Select Zone --</option>');
-                    $.each(result, function (key, value) {
-                        $("#zone_id").append('<option value="' + value
-                            .id + '">' + value.zone + '</option>');
-                    });
-
-                }
-            });
-        });
-        $('#zone_id').on('change', function () {
-            var zone_id = this.value;
-
-            $("#dOfficer").html('');
-            $.ajax({
-                url: "{{route('zone.get-user')}}",
-                type: "POST",
-                data: {
-                    zone_id: zone_id,
-                    _token: '{{csrf_token()}}'
-                },
-                dataType: 'json',
-                success: function (result) {
-                    $("#dOfficer").empty();
-                    $('#dOfficer').html('<option value="">-- Select Zone --</option>');
-                    $.each(result, function (key, value) {
-                        $("#dOfficer").append('<option value="' + value
-                            .id + '">' + value.name + '</option>');
-                    });
-
-                }
-            });
-        });
+        {{--        }--}}
+        {{--    });--}}
+        {{--});--}}
 
         // $("#app_date").datepicker();
         $(function () {

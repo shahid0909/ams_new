@@ -25,6 +25,17 @@ class FrontendController extends Controller
         $consulateType = lSubConsular::all();
         return view('frontend.mission.index',compact('country','apptype','consulateType'));
     }
+ public function tracking(Request $request)
+    {
+        $country = country::all();
+        $apptype =LAppoinmentType::all();
+        $consulateType = lSubConsular::all();
+        return view('frontend.tracking',compact('country','apptype','consulateType'));
+    }
+    public function contact(Request $request)
+    {
+        return view('frontend.contact');
+    }
 
     public function getmissionAjax(Request $request){
 
