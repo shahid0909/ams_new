@@ -21,11 +21,11 @@ class User extends Authenticatable
         'name',
         'email',
         'contact_no',
-        'missionId',
-        'countryId',
-        'zoneId' ,
+        'mission_id',
+        'country_id',
         'role'  ,
         'password',
+'active_yn'
 
     ];
 

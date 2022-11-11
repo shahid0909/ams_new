@@ -1,6 +1,8 @@
 <!-- plugins:js -->
 <script src="{{ asset('backend/vendors/js/vendor.bundle.base.js') }}"></script>
-<!-- endinject -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+<script src="{{ asset('backend/vendors/select2/select2.min.js') }}"></script>
 <!-- Plugin js for this page -->
 <script src="{{ asset('backend/vendors/chart.js/Chart.min.js') }}"></script>
 <script src="{{ asset('backend/vendors/datatables.net/jquery.dataTables.js') }}"></script>
@@ -14,17 +16,11 @@
 <script src="{{ asset('backend/js/template.js') }}"></script>
 <script src="{{ asset('backend/js/settings.js') }}"></script>
 <script src="{{ asset('backend/js/todolist.js') }}"></script>
-<script src="{{ asset('backend/vendors/select2/select2.min.js') }}"></script>
-<!-- endinject -->
 <!-- Custom js for this page-->
 <script src="{{ asset('backend/js/dashboard.js') }}"></script>
 <script src="{{ asset('backend/js/Chart.roundedBarCharts.js') }}"></script>
 {{--<script src="{{ asset('backend/js/select2.js') }}"></script>--}}
 <script src="{{ asset('backend/js/timepicker-bs4.js') }}"></script>
-<<<<<<< HEAD
-
-=======
-<script src="{{ asset('backend/vendors/select2/select2.min.js') }}"></script>
->>>>>>> be1d35700684a6b82cb3b629f5cbcc7a59eed26a
+<script src="{{ asset('backend/js/select2.js') }}"></script>
 {{--<script src="{{ asset('backend/js/dateTime/pick-a-datetime.min.js') }}"></script>--}}
 <!-- End custom js for this page-->

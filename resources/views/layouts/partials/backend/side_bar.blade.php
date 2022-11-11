@@ -54,10 +54,16 @@
             </div>
         </li>
         <li class="nav-item">
-
+            <a class="nav-link" href="{{ route('appoinment.reports') }}">
                 <i class="icon-grid menu-icon"></i>
-                <span class="menu-title">Tracking</span>
-
+                <span class="menu-title">Report </span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="">
+                <i class="icon-grid menu-icon"></i>
+                <span class="menu-title">Tracking </span>
+            </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#user" aria-expanded="false" aria-controls="user">
@@ -71,9 +77,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('user.index')}}">User Create</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('user.profile-index')}}">User Profile</a>
+                        </li>
                     @endif
-                    <li class="nav-item"><a class="nav-link" href="{{ route('appoinment.reports') }}">User Profile</a>
-                    </li>
+
                     {{--                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>--}}
                 </ul>
             </div>

@@ -20,6 +20,12 @@
                     </select>
                 </div>
                 <div class="col-md-4 mt-auto">
+                    <select class="form-control" name="report_type" id="report_type">
+                        <option value="pdf">Pdf</option>
+                        <option value="excel">Excel</option>
+                    </select>
+                </div>
+                <div class="col-md-4 mt-auto">
                     <button type="submit" class="btn btn-dark">Generate Report</button>
                 </div>
             </div>

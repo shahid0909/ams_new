@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Appoinment\AppoinmentController;
+use App\Http\Controllers\Appoinment\UserProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
@@ -35,7 +36,6 @@ Route::group(['name' => 'frontend', 'as' => 'frontend.'], function () {
 
 });
 
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -47,6 +47,9 @@ Route::group(['name' => 'user', 'as' => 'user.'], function () {
     Route::get('user-datatable', [RegisterController::class, 'datatable'])->name('datatable');
     Route::get('user-edit/{id}', [RegisterController::class, 'inactive'])->name('inactive');
     Route::post('get-mission-ajax', [RegisterController::class, 'getMissionAjax'])->name('get-mission-ajax');
+    Route::get('user-profile', [UserProfileController::class, 'index'])->name('profile-index');
+    Route::post('change-user-password', [UserProfileController::class, 'updatePassword'])->name('change_password');
+
 
 });
 
@@ -71,7 +74,6 @@ Route::group(['name' => 'country', 'as' => 'country.'], function () {
 
 });
 
-
 Route::group(['name' => 'schedule', 'as' => 'schedule.'], function () {
     Route::get('schedule-entry', [ScheduleController::class, 'index'])->name('index');
     Route::POST('schedule-store', [ScheduleController::class, 'store'])->name('store');
@@ -92,10 +94,17 @@ Route::group(['name' => 'desk', 'as' => 'desk.'], function () {
 
 
 
+Route::group(['name' => 'lemployee', 'as' => 'lemployee.'], function () {
+    Route::get('employee-entry', [EmployeeController::class, 'index'])->name('index');
+    Route::POST('employee-store', [EmployeeController::class, 'store'])->name('store');
+    Route::get('employee-datatable', [EmployeeController::class, 'datatable'])->name('datatable');
+
+});
 
 Route::group(['name' => 'appoinment', 'as' => 'appoinment.'], function () {
 
     Route::get('appointment-list', [AppoinmentController::class, 'index'])->name('index');
+    Route::get('appointment-data', [AppoinmentController::class, 'get_appointment_data'])->name('export');
     Route::get('reports', [AppoinmentController::class, 'reports'])->name('reports');
 });
 
