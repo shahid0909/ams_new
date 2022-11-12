@@ -14,6 +14,7 @@ use App\Http\Controllers\Controller;
 use function dd;
 use function env;
 use function redirect;
+use function response;
 
 class MailController extends Controller {
 
@@ -29,22 +30,20 @@ class MailController extends Controller {
     }
 
     public function send_email($id) {
-        $details = User::find($id)->first();
+        $details = User::where('id', $id)->first();
         $user = Auth::user();
 
         Mail::to($details->email)->send(new SendMail($details));
-
-//        dd("Email is Sent.");
-        return redirect()->back()->with('success', 'Mail Send Successfully!!');
+        return response()->json('Mail Send Successfully !!', 200);
+//        return redirect()->back()->with('success', 'Mail Send Successfully!!');
     }
 
 //    public function send_email($id) {
-//        $data = User::find($id)->first();
+//        $data[] = User::find($id)->first();
 //        $user = Auth::user();
 //
 //        Mail::send(['text'=>'backend.mail'], $data, function($message) use ($data, $user) {
-//            $message->to($data->email, $data->name)->subject
-//            ('User Credentials');
+//            $message->to($data[0]->email, $data[0]->name)->subject('User Credentials');
 //            $message->from($user->email, $user->name);
 //        });
 //        return redirect()->back()->with('success', 'Mail Send Successfully!!');

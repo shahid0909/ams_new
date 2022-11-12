@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mail Send</title>
+    <title>Welcome Mail</title>
 </head>
 <body>
-<h1>{{ $details['name'] }}</h1>
-<p>Contact No: {{ $details['contact_no'] }}</p>
+<p>Wellcome to new user for {{$data->mission}}</p>
+<h5>Name: {{$data->name }}</h5>
+<h5>User name: {{$data->email }}</h5>
+<h5>Password : ''</h5>
+<h5>Country: {{$data->country }}</h5>
+<h5>Mission: {{$data->mission}}</h5>
+
 
 <p>Thank you</p>
+Ministry of Foreign Affairs of Bangladesh
 </body>
 </html>

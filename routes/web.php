@@ -12,6 +12,9 @@ use App\Http\Controllers\Setup\EmployeeController;
 use App\Http\Controllers\Setup\MissionController;
 use App\Http\Controllers\Setup\ScheduleController;
 
+use App\Http\Controllers\Tracking\LtrackingStatusController;
+use App\Http\Controllers\Tracking\LtrackingTypeController;
+use App\Http\Controllers\Tracking\RegisterNewRequestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,6 +54,7 @@ Route::group(['name' => 'user', 'as' => 'user.'], function () {
     Route::POST('user-store', [RegisterController::class, 'create'])->name('create');
     Route::get('user-datatable', [RegisterController::class, 'datatable'])->name('datatable');
     Route::get('user-edit/{id}', [RegisterController::class, 'inactive'])->name('inactive');
+    Route::get('mail-send/{id}', [RegisterController::class, 'mailSend'])->name('mail_send');
     Route::post('get-mission-ajax', [RegisterController::class, 'getMissionAjax'])->name('get-mission-ajax');
     Route::get('user-profile', [UserProfileController::class, 'index'])->name('profile-index');
     Route::post('change-user-password', [UserProfileController::class, 'updatePassword'])->name('change_password');
@@ -104,6 +108,36 @@ Route::group(['name' => 'appoinment', 'as' => 'appoinment.'], function () {
     Route::get('appointment-data', [AppoinmentController::class, 'get_appointment_data'])->name('export');
     Route::get('reports', [AppoinmentController::class, 'reports'])->name('reports');
 });
+
+//Tracking start
+
+Route::group(['name' => 'tracking-type', 'as' => 'tracking-type.'], function () {
+    Route::get('tracking-type', [LtrackingTypeController::class, 'index'])->name('index');
+    Route::POST('tracking-type-store', [LtrackingTypeController::class, 'store'])->name('store');
+    Route::get('tracking-type-datatable', [LtrackingTypeController::class, 'datatable'])->name('datatable');
+    Route::get('tracking-type-edit/{id}', [LtrackingTypeController::class, 'edit'])->name('edit');
+    Route::put('tracking-type-update/{id}', [LtrackingTypeController::class, 'update'])->name('update');
+    Route::get('tracking-type-destroy/{id}', [LtrackingTypeController::class, 'destroy'])->name('destroy');
+});
+Route::group(['name' => 'tracking-status', 'as' => 'tracking-status.'], function () {
+    Route::get('tracking-status', [LtrackingStatusController::class, 'index'])->name('index');
+    Route::POST('tracking-status-store', [LtrackingStatusController::class, 'store'])->name('store');
+    Route::get('tracking-status-datatable', [LtrackingStatusController::class, 'datatable'])->name('datatable');
+    Route::get('tracking-status-edit/{id}', [LtrackingStatusController::class, 'edit'])->name('edit');
+    Route::put('tracking-status-update/{id}', [LtrackingStatusController::class, 'update'])->name('update');
+    Route::get('tracking-status-destroy/{id}', [LtrackingStatusController::class, 'destroy'])->name('destroy');
+});
+Route::group(['name' => 'request-new-user', 'as' => 'request-new-user.'], function () {
+    Route::get('request-new-user', [RegisterNewRequestController::class, 'index'])->name('index');
+    Route::get('request-new-user-create', [RegisterNewRequestController::class, 'create'])->name('create');
+    Route::POST('request-new-user-store', [RegisterNewRequestController::class, 'store'])->name('store');
+//    Route::POST('tracking-status-store', [LtrackingStatusController::class, 'store'])->name('store');
+//    Route::get('tracking-status-datatable', [LtrackingStatusController::class, 'datatable'])->name('datatable');
+//    Route::get('tracking-status-edit/{id}', [LtrackingStatusController::class, 'edit'])->name('edit');
+//    Route::put('tracking-status-update/{id}', [LtrackingStatusController::class, 'update'])->name('update');
+//    Route::get('tracking-status-destroy/{id}', [LtrackingStatusController::class, 'destroy'])->name('destroy');
+});
+
 
 
 

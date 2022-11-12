@@ -9,6 +9,7 @@
 <script src="{{ asset('backend/vendors/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
 <script src="{{ asset('backend/js/dataTables.select.min.js') }}"></script>
 
+
 <!-- End plugin js for this page -->
 <!-- inject:js -->
 <script src="{{ asset('backend/js/off-canvas.js') }}"></script>
@@ -22,5 +23,9 @@
 {{--<script src="{{ asset('backend/js/select2.js') }}"></script>--}}
 <script src="{{ asset('backend/js/timepicker-bs4.js') }}"></script>
 <script src="{{ asset('backend/js/select2.js') }}"></script>
+<script src="{{ asset('backend/js/tooltips.js') }}"></script>
+<script src="{{ asset('backend/js/popover.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 {{--<script src="{{ asset('backend/js/dateTime/pick-a-datetime.min.js') }}"></script>--}}
+{{--<button class="btn btn-primary" data-bs-toggle="tooltip" data-placement="right" title="" data-bs-original-title="Basic tooltip">Hover me</button>--}}
 <!-- End custom js for this page-->

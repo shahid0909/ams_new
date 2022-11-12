@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SendMail;
 use App\Models\country;
 use App\Models\lmission;
 use App\Models\role;
@@ -13,7 +14,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use function response;
 use function route;
 
 class RegisterController extends Controller
@@ -73,6 +76,24 @@ class RegisterController extends Controller
         $data = lmission::where('country_id', $request->country_id)->get();
 
         return response()->json($data);
+
+    }
+
+    public function mailSend(Request $request, $id)
+    {
+       $data = DB::table('users')
+            ->join('lmission', 'lmission.id', '=', 'users.mission_id')
+            ->join('country', 'country.id', '=', 'users.country_id')
+            ->join('role', 'role.id', '=', 'users.role')
+//                ->where('users.active_yn', '=', 'Y')
+            ->orderBy('users.id', 'desc')
+           ->where('users.id',$id)
+            ->select('users.*', 'lmission.mission', 'country.country', 'role.role')->first();
+//       dd($data);
+//        $data = User::where('id', $id)->first();
+
+        Mail::to($data->email)->send(new SendMail($data));
+        return response()->json('Mail Send Successfully!!', 200);
 
     }
 
@@ -141,7 +162,7 @@ class RegisterController extends Controller
         return datatables()->of($data)
             ->editColumn('active_yn', function ($query) {
                 if ($query->active_yn == 'Y') {
-                    return '<a data-bs-toggle="tooltip" data-placement="right" title="" data-bs-original-title="Basic tooltip" href="' . route('send_mail', $query->id) . '" ><i class="ti-email"></i></a>&nbsp;&nbsp; || &nbsp;&nbsp;<a style="text-decoration: none" href="' . route('user.inactive', $query->id) . '" class=""><i class="fas fa-check"></i> Active</i></a>';
+                    return '<a id="send_mail" data-id="'. $query->id .'" href="javascript:void(0)" ><i class="fas fa-paper-plane"></i></a>&nbsp;&nbsp; || &nbsp;&nbsp;<a style="text-decoration: none" href="' . route('user.inactive', $query->id) . '" class=""><i class="fas fa-check"></i> Active</i></a>';
                 } else {
                     return '<button class="btn btn-inverse-danger" >Inactive</button>';
                 }
@@ -154,5 +175,7 @@ class RegisterController extends Controller
             ->addIndexColumn()
             ->make();
     }
+
+//' . route('send_mail', $query->id) . '
 
 }

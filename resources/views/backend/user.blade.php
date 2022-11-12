@@ -3,6 +3,7 @@
     User Create
 @endsection
 @section('css')
+
     <style>
         :root {
             --main-bg: #e91e63;
@@ -108,7 +109,7 @@
                             <label>Role<span class="text-danger">*</span></label>
                             <select name="role" id="country_id" required class="form-control">
                                 @if(Auth::user()->role == 1)
-                                <option value="">---Select Role---</option>
+                                    <option value="">---Select Role---</option>
                                 @endif
                                 @foreach($role as $list)
                                     <option value="{{$list->id}}">{{$list->role}}</option>
@@ -137,23 +138,20 @@
             <h4 class="card-title ">User List</h4>
 
             <table class="table table-striped table-hover datatable">
-                <tr>
-                    <thead>
-                    <th>Sl</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Contact</th>
-                    <th>Role</th>
-                    <th>Country</th>
-                    <th>Mission</th>
-                    <th>Status</th>
-                    </thead>
-
-                </tr>
-
+                <thead>
+                    <tr>
+                        <th>Sl</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Contact</th>
+                        <th>Role</th>
+                        <th>Country</th>
+                        <th>Mission</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
                 <tbody>
                 </tbody>
-
             </table>
 
 
@@ -161,6 +159,7 @@
     </div>
 @endsection
 @section('js')
+
     <script>
 
         $('#country_id').on('change', function () {
@@ -219,6 +218,23 @@
 
                     }
                 }
+            });
+
+            $(document).on('click', '#send_mail', function(){
+                let id = $(this).data('id');
+                let data = '';
+                $.ajax({
+                    type: 'get',
+                    url: 'mail-send/'+id,
+                    data: data,
+                    success: function(response){
+                        console.log(response);
+                        toastr.success("Mail Send Successfully!!");
+                    },
+                    error: function(blob){
+                        console.log(blob);
+                    }
+                });
             });
         });
     </script>
